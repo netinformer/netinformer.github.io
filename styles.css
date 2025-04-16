@@ -89,6 +89,11 @@ header {
   transition: all 0.3s ease;
 }
 
+.info-card:hover {
+  transform: scale(1.03); 
+
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -121,9 +126,10 @@ header {
 
 #scrollTop {
   position: fixed;
+  width: 35px;
+  height: 35px;
   bottom: 20px;
   right: 20px;
-  padding: 0.5em;
   background: var(--accent);
   color: #000;
   border: none;
