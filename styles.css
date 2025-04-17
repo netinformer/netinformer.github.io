@@ -83,11 +83,13 @@ header {
   margin: 1em 2em;
   padding: 1em;
   border-radius: 10px;
+  opacity: 40%;
   box-shadow: 0 0 10px #00000055;
   transition: transform 0.3s ease;
 }
 
 .info-card:hover {
+  opacity: 100%;
   transform: scale(1.03);
 }
 
