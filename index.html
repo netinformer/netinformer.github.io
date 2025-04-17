@@ -24,11 +24,13 @@
 
   <main>
     <div class="about">
-    <p class="intro" >
-      netinformer displays your network and web information — including your IP address, hostname, user agent, server headers, WHOIS info, and blacklist status.
-    </p>
-    <img src="/assets/Network Information Overview.png" style="width: 200px; ">
+      <p class="intro">
+        netinformer displays your network and web information — including your IP address, hostname, user agent, server headers, WHOIS info, blacklist status, and current time (local and UTC).
+      </p>
+      <img src="/assets/Network Information Overview.png" style="width: 200px;">
     </div>
+    
+    <section id="timeCard" class="info-card"></section>
     <section id="ipCard" class="info-card"></section>
     <section id="hostnameCard" class="info-card"></section>
     <section id="uaCard" class="info-card"></section>
@@ -38,7 +40,6 @@
   </main>
 
   <button id="scrollTop" title="Back to top">↑</button>
-
   <script src="script.js"></script>
 </body>
 </html>

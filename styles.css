@@ -17,12 +17,12 @@
 }
 
 body {
-  background: linear-gradient(120deg, #0a0a0f, #1c0b2b);
+  background: linear-gradient(120deg, var(--bg), #1c0b2b);
   color: var(--text);
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  transition: background 0.5s ease;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 header {
@@ -34,6 +34,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 99;
+  box-shadow: 0 2px 8px #00000030;
 }
 
 .logo {
@@ -55,21 +56,18 @@ header {
   border: none;
   padding: 0.5em 1em;
   cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
 
 .controls button:hover {
   background: var(--hover);
 }
 
-
 .about {
   background-color: #000;
   color: #11ff00;
   text-align: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  justify-items: center;
   border-radius: 10px;
   margin: 20px;
   padding: 20px;
@@ -86,12 +84,11 @@ header {
   padding: 1em;
   border-radius: 10px;
   box-shadow: 0 0 10px #00000055;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .info-card:hover {
-  transform: scale(1.03); 
-
+  transform: scale(1.03);
 }
 
 .card-header {
@@ -111,6 +108,7 @@ header {
   color: var(--text);
   border: none;
   padding: 0.3em 0.6em;
+  border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
 }

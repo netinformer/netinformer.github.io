@@ -63,8 +63,26 @@ function setupUI() {
   scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function updateTime() {
+  const local = new Date();
+  const utc = new Date().toUTCString();
+
+  const timeHtml = `
+    <ul>
+      <li><strong>Local Time:</strong> ${local.toLocaleString()}</li>
+      <li><strong>UTC Time:</strong> ${utc}</li>
+    </ul>
+  `;
+  document.getElementById("timeCard").innerHTML = createCard("Current Time", timeHtml, null, "time");
+
+  collectedData["Local Time"] = local.toLocaleString();
+  collectedData["UTC Time"] = utc;
+}
+
 async function init() {
   setupUI();
+  updateTime();
+  setInterval(updateTime, 60000);
 
   const ipCard = document.getElementById("ipCard");
   const hostnameCard = document.getElementById("hostnameCard");
@@ -73,24 +91,20 @@ async function init() {
   const whoisCard = document.getElementById("whoisCard");
   const blacklistCard = document.getElementById("blacklistCard");
 
-  // IP
   const ipData = await fetchData("https://api.ipify.org?format=json");
   const ip = ipData?.ip || "Unavailable";
   ipCard.innerHTML = createCard("IP Address", `<p>${ip}</p>`, `https://whatismyipaddress.com/ip/${ip}`, "ip");
   collectedData["IP Address"] = ip;
 
-  // Hostname
   const hostnameData = await fetchData("https://whatismyhostname.com/json/");
   const hostname = hostnameData?.hostname || "Unavailable";
   hostnameCard.innerHTML = createCard("Hostname", `<p>${hostname}</p>`, "https://whatismyhostname.com", "hostname");
   collectedData["Hostname"] = hostname;
 
-  // UA
   const ua = navigator.userAgent;
   uaCard.innerHTML = createCard("User Agent", `<p>${ua}</p>`, "https://www.whatismybrowser.com", "ua");
   collectedData["User Agent"] = ua;
 
-  // Headers
   const headersData = await fetchData("https://httpbingo.org/headers");
   if (headersData?.headers) {
     const headerList = Object.entries(headersData.headers)
@@ -100,7 +114,6 @@ async function init() {
     collectedData["Server Headers"] = JSON.stringify(headersData.headers, null, 2);
   }
 
-  // WHOIS
   const whoisData = await fetchData(`https://rdap.org/ip/${ip}`);
   if (whoisData) {
     const whoisInfo = {
@@ -120,7 +133,6 @@ async function init() {
     collectedData["WHOIS Info"] = whoisInfo;
   }
 
-  // Blacklist
   blacklistCard.innerHTML = createCard("Blacklist Check", `<p>Check your blacklist status at the link below.</p>`, `https://whatismyipaddress.com/blacklist-check/${ip}`, "blacklist");
   collectedData["Blacklist Check"] = `https://whatismyipaddress.com/blacklist-check/${ip}`;
 }
